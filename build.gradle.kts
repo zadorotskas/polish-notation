@@ -9,12 +9,18 @@ plugins {
 }
 
 group = "ru.spbstu.icc.kspt"
-version = "0.0.1"
+version = "1.0.0"
 application {
     mainClass.set("ru.spbstu.icc.kspt.ApplicationKt")
 
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
+}
+
+ktor {
+    fatJar {
+        archiveFileName.set("polish-notation-$version.jar")
+    }
 }
 
 repositories {
