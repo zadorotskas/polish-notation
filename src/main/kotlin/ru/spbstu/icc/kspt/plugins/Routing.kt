@@ -5,6 +5,8 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import ru.spbstu.icc.kspt.converters.ConverterFromPolishImpl
 import ru.spbstu.icc.kspt.converters.ConverterToReversePolishImpl
+import ru.spbstu.icc.kspt.validation.ValidatorInfixImpl
+import ru.spbstu.icc.kspt.validation.ValidatorPolishImpl
 
 const val INFIX = "infix"
 const val POLISH = "polish"
@@ -13,14 +15,18 @@ fun Application.configureRouting() {
     routing {
         post("/api/toPolish") {
             val infixNotation = call.parameters[INFIX]!!
-            val result = ConverterToReversePolishImpl.convert(infixNotation)
-            call.respondText(result)
+            if (ValidatorInfixImpl.isValid(infixNotation)) {
+                val result = ConverterToReversePolishImpl.convert(infixNotation)
+                call.respondText(result)
+            }
         }
 
         post("/api/fromPolish") {
-            val infixNotation = call.parameters[POLISH]!!
-            val result = ConverterFromPolishImpl.convert(infixNotation)
-            call.respondText(result)
+            val polishNotation = call.parameters[POLISH]!!
+            if (ValidatorPolishImpl.isValid(polishNotation)) {
+                val result = ConverterFromPolishImpl.convert(polishNotation)
+                call.respondText(result)
+            }
         }
     }
 }
