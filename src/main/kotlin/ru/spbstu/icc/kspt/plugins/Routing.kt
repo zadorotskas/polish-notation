@@ -1,5 +1,6 @@
 package ru.spbstu.icc.kspt.plugins
 
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -18,6 +19,8 @@ fun Application.configureRouting() {
             if (ValidatorInfixImpl.isValid(infixNotation)) {
                 val result = ConverterToReversePolishImpl.convert(infixNotation)
                 call.respondText(result)
+            } else {
+                call.respondText("Invalid expression, cannot convert", status = HttpStatusCode.BadRequest)
             }
         }
 
@@ -26,6 +29,8 @@ fun Application.configureRouting() {
             if (ValidatorPolishImpl.isValid(polishNotation)) {
                 val result = ConverterFromPolishImpl.convert(polishNotation)
                 call.respondText(result)
+            } else {
+                call.respondText("Invalid expression, cannot convert", status = HttpStatusCode.BadRequest)
             }
         }
     }
