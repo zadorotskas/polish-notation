@@ -1,4 +1,7 @@
 # polish-notation
+| Master                                                                                                                                                                                                 | Develop                                                                                                                                                                                                 |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [![Api Tests](https://github.com/zadorotskas/polish-notation/actions/workflows/api-tests.yml/badge.svg?branch=master)](https://github.com/zadorotskas/polish-notation/actions/workflows/api-tests.yml) | [![Api Tests](https://github.com/zadorotskas/polish-notation/actions/workflows/api-tests.yml/badge.svg?branch=develop)](https://github.com/zadorotskas/polish-notation/actions/workflows/api-tests.yml) |
 Infix notation to polish notation converter
 ## Run with docker
 Clone repository 
